@@ -9,7 +9,7 @@ module SpreeMobility
 
   module VERSION
     MAJOR = 1
-    MINOR = 2
+    MINOR = 4
     TINY  = 0
     PRE   = nil # 'beta'
 

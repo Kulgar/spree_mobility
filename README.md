@@ -4,7 +4,11 @@ This is a Spree model translation gem based on `spree_globalize` for [Spree Comm
 It uses `mobility` instead of `globalize`, since `globalize` is not actively developed anymore.
 It is a drop-in replacement for `spree_globalize` and will use your existing translations.
 
-Currently, this gem is tested with Spree 4.3.1.
+Currently, this gem is tested with Spree 4.3.1. Since version 1.3, it should also work with Spree 4.4.
+
+## Upgrading
+
+Re-run `rails g spree_mobility:install` to add new migrations.
 
 ## Installation
 
@@ -34,6 +38,18 @@ Mobility.configure do
 end
 ```
 
+## Spree 4.3.x
+
+There is a bug with `Spree.ready` in Spree 4.3.x, as it hooks into Turbolinks,
+but Turbolinks is not used in the backend. Due to this some translation links in
+the admin won't work out of the box.
+To fix this, add to the bottom of `vendor/assets/javascripts/spree/backend/all.js`:
+
+```ruby
+# vendor/assets/javascripts/spree/backend/all.js
+$(window).on('load', function() { $(document).trigger('page:load'); });
+```
+
 ---
 
 ## Improvements over spree_globalize
@@ -59,7 +75,7 @@ For more localization features, see my `better_spree_localization` gem.
 This feature uses the [Mobility][3] gem to localize model data.
 So far the following models are translatable:
 
-    Product, Promotion, OptionType, Taxonomy, Taxon, Property, Store and ShippingMethod.
+    Product, Promotion, OptionType, Taxonomy, Taxon, Property, Store, ShippingMethod and PaymentMethod.
 
 Start your server and you should see a TRANSLATIONS link or a flag icon on each
 admin section that supports this feature.
