@@ -41,7 +41,7 @@ module SpreeMobility::CoreExt::Spree::TaxonDecorator
 
     base.translation_class.class_eval do
       include TranslationMethods
-      validates :name, presence: true
+      #validates :name, presence: true
       validate :name_uniqueness_validation
       with_options length: { maximum: 255 }, allow_blank: true do
         validates :meta_keywords
