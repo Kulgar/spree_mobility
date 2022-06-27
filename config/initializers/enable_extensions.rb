@@ -9,6 +9,7 @@ Rails.application.config.to_prepare do
   # Extend reloadable classes
   SpreeMobility.prepend_once(::Spree::OptionType, SpreeMobility::CoreExt::Spree::OptionTypeDecorator)
   SpreeMobility.prepend_once(::Spree::OptionValue, SpreeMobility::CoreExt::Spree::OptionValueDecorator)
+  SpreeMobility.prepend_once(::Spree::RelationType, SpreeMobility::CoreExt::Spree::RelationTypeDecorator)
   SpreeMobility.prepend_once(::Spree::Product, SpreeMobility::CoreExt::Spree::ProductDecorator)
   SpreeMobility.prepend_once(::Spree::Product.singleton_class, SpreeMobility::CoreExt::Spree::ProductDecorator::ClassMethods)
   SpreeMobility.prepend_once(::Spree::Product.singleton_class, SpreeMobility::CoreExt::Spree::ProductScopesWithMobilityDecorator)
